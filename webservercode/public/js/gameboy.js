@@ -3,6 +3,7 @@ let fps = 30;
 let stopConnection = false;
 let keyBuffer = [];
 let password;
+let url = 'wss://gameboy.samjstuff.com/wsserver'
 const keyDict = {
     "ArrowUp": "UP", 
     "ArrowLeft": "LEFT", 
@@ -109,7 +110,7 @@ function updateCanvas(screenImg){
 
 function getRoms() {
     password = window.prompt("Enter the password for the GameBoy Server", "");
-    const romSocket = new WebSocket('ws://192.168.1.114:8765')
+    const romSocket = new WebSocket(url)
 
     let packet = {
         "authentication": password,
@@ -162,7 +163,7 @@ function getRoms() {
 }
 
 function startGameBoy() {
-    let socket = new WebSocket('ws://192.168.1.114:8765')
+    let socket = new WebSocket(url);
     let packet = {
         "authentication": password,
         "command":  "authenticate"
