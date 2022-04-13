@@ -3,3 +3,4 @@ testroms/*
 webservercode/node_modules/*
 roms/*
 __pycache__/*
+node_modules
