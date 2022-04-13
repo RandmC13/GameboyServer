@@ -1,0 +1,11 @@
+.container {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.canvas {
+    margin: 0 auto;
+    outline: solid 5px black;
+}
