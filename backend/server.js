@@ -1,4 +1,6 @@
 import express from "express";
+import path from "path";
+import wsserver from "./wsserver.js";
 
 const app = express();
 const port = 3000;
@@ -6,9 +8,12 @@ const port = 3000;
 app.use(express.static("public"));
 
 app.get('/', (req, res) => {
-    res.send("Hi");
+    res.sendFile(path.join(__dirname, "public", "index.html"));
 })
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
+
+//Attach the websocket server
+wsserver(server);
