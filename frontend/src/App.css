@@ -1,11 +1,11 @@
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
 #mainContainer {
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    margin: 0px;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
