@@ -12,7 +12,7 @@ const Screen = (props) => {
 
     return (
         <div id="screenContainer" className={styles.container}>
-            <canvas 
+            <canvas
                 id="screen"
                 className={styles.canvas}
                 width={gameboyDimensions.width * props.pixelSize}
