@@ -1,7 +1,16 @@
 import { WebSocketServer } from "ws";
+import crypto from "crypto";
 import queryString from "query-string";
 
 const password = "rickandmortyseason5";
+
+const generateToken = (userPass) => {
+    if (userPass === password) {
+        return crypto.randomUUID();
+    } else {
+        return "fail";
+    }
+}
 
 export default (expressServer) => {
     const websocketServer = new WebSocketServer({
@@ -20,7 +29,14 @@ export default (expressServer) => {
         const params = queryString.parse(requestParams);
 
         websocket.on("message", (data) => {
-            console.log(JSON.parse(data.toString()));
+            let request = JSON.parse(data.toString());
+            //Respond based on request type
+            switch(request.type) {
+                case "authenticate":
+                    let token = generateToken(request.data);
+                    websocket.send(token);
+                    break;
+            }
         });
     });
 

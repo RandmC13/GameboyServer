@@ -11,6 +11,14 @@ const App = () => {
         authenticated:  false
     });
 
+    const updateAuthenticated = (bool, token="") => {
+        if (!bool) {token = ""}
+        setState({
+            ...state,
+            authenticated:  bool,
+            token: token});
+    };
+
     //If authenticated draw the screen if not draw password box
 
     if (state.authenticated) {
@@ -22,7 +30,7 @@ const App = () => {
     } else {
         return (
             <div id="mainContainer">
-                <PasswordBox />
+                <PasswordBox updateAuthenticated={updateAuthenticated} />
             </div>
         )
     }

@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import styles from "../components-css/PasswordBox.module.css"
+//Import util function
+import { authenticate } from "../util/websocket";
 
-const PasswordBox = () => {
+const url = "ws://localhost:3000/ws";
+
+const PasswordBox = (props) => {
 
     const [value, setValue] = useState("");
 
@@ -11,6 +15,13 @@ const PasswordBox = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        authenticate(value, url)
+            .then((token) => {
+                props.updateAuthenticated(true, token);
+            })
+            .catch((err) => {
+                setValue("");
+            });
     };
 
     return (
